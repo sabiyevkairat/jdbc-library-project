@@ -6,13 +6,33 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DB_util {
+public class DB_Util {
 
     // declaring at class level so all methods can access
     private static Connection connection;
     private static Statement statement;
     private static ResultSet resultSet;
     private static ResultSetMetaData metaData;
+
+
+
+    /**
+     * destroy method to clean up all the resources after being used
+     */
+    public static void destroy(){
+        // WE HAVE TO CHECK IF WE HAVE THE VALID OBJECT FIRST BEFORE CLOSING THE RESOURCE
+        // BECAUSE WE CAN NOT TAKE ACTION ON AN OBJECT THAT DOES NOT EXIST
+        try {
+            if( resultSet!=null)  resultSet.close();
+            if( statement!=null)  statement.close();
+            if( connection!=null)  connection.close();
+        } catch (Exception e) {
+            System.out.println("ERROR OCCURRED WHILE CLOSING RESOURCES " + e.getMessage() );
+        }
+
+    }
+
+
 
 
     /**
@@ -37,9 +57,10 @@ public class DB_util {
      */
     public static void createConnection() {
 
-        String url      = ConfigurationReader.getProperty("db.url") ;
-        String username = ConfigurationReader.getProperty("db.username") ;
-        String password = ConfigurationReader.getProperty("db.password") ;
+        String url = "jdbc:mysql://34.230.35.214:3306/library2";
+
+        String username = "library2_client";
+        String password = "6s2LQQTjBcGFfDhY";
 
         createConnection(url, username, password);
 
@@ -382,5 +403,7 @@ public class DB_util {
 
         return allRowLstOfMap;
     }
+
+
 
 }
