@@ -3,7 +3,7 @@ package com.cydeo.step_definitions;
 import com.cydeo.pages.DashBoardPage;
 import com.cydeo.pages.LoginPage;
 import com.cydeo.utilities.ConfigurationReader;
-import com.cydeo.utilities.DB_Util;
+import com.cydeo.utilities.DB_util;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -35,8 +35,8 @@ public class BorrowedNumberBooks_StepDef {
     public void borrowed_books_number_information_must_match_with_db() {
         String query = "select count(*) from book_borrow\n" +
                 "where is_returned=0";
-        DB_Util.runQuery(query);
-        String expectedNumber = DB_Util.getFirstRowFirstColumn();
+        DB_util.runQuery(query);
+        String expectedNumber = DB_util.getFirstRowFirstColumn();
         Assert.assertEquals(expectedNumber, actualNumber);
     }
 

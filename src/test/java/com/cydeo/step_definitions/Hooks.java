@@ -1,7 +1,7 @@
 package com.cydeo.step_definitions;
 
 import com.cydeo.utilities.ConfigurationReader;
-import com.cydeo.utilities.DB_Util;
+import com.cydeo.utilities.DB_util;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
@@ -40,7 +40,7 @@ public class Hooks {
     @Before ("@db")
     public void setupDB() {
 
-        DB_Util.createConnection();
+        DB_util.createConnection();
         System.out.println("Connecting to database");
 
     }
@@ -48,7 +48,7 @@ public class Hooks {
     @After ("@db")
     public void destroyDB() {
 
-        DB_Util.close();
+        DB_util.close();
         System.out.println("Closing connection");
 
     }
