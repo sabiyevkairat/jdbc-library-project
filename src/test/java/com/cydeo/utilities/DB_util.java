@@ -16,6 +16,23 @@ public class DB_util {
 
 
     /**
+     * destroy method to clean up all the resources after being used
+     */
+    public static void destroy() {
+        // WE HAVE TO CHECK IF WE HAVE THE VALID OBJECT FIRST BEFORE CLOSING THE RESOURCE
+        // BECAUSE WE CAN NOT TAKE ACTION ON AN OBJECT THAT DOES NOT EXIST
+        try {
+            if (resultSet != null) resultSet.close();
+            if (statement != null) statement.close();
+            if (connection != null) connection.close();
+        } catch (Exception e) {
+            System.out.println("ERROR OCCURRED WHILE CLOSING RESOURCES " + e.getMessage());
+        }
+
+    }
+
+
+    /**
      * Create Connection by jdbc url and username , password provided
      *
      * @param url      jdbc url for any database
@@ -37,9 +54,10 @@ public class DB_util {
      */
     public static void createConnection() {
 
-        String url      = ConfigurationReader.getProperty("db.url") ;
-        String username = ConfigurationReader.getProperty("db.username") ;
-        String password = ConfigurationReader.getProperty("db.password") ;
+        String url = "jdbc:mysql://34.230.35.214:3306/library3";
+
+        String username = "library3_client";
+        String password = "Pzi75akktLC4BoI9";
 
         createConnection(url, username, password);
 
@@ -382,5 +400,6 @@ public class DB_util {
 
         return allRowLstOfMap;
     }
+
 
 }

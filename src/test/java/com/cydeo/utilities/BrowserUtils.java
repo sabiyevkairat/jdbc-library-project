@@ -109,6 +109,20 @@ public class BrowserUtils {
         }
         return textAsList;
     }
-
-
+    public static void waitFor(int seconds) {
+        try {
+            Thread.sleep(seconds * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 }
+/**
+ * Waits for the provided element to be visible on the page
+ *
+ * @param element
+ * @param timeToWaitInSec
+ * @return
+ */
+
+
